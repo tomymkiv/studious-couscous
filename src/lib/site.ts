@@ -31,10 +31,6 @@ export const site = {
 
 	// Dato provisto por el estudio.
 	cases: 50,
-
-	// REEMPLAZAR: promedio y cantidad real de valoraciones.
-	rating: 4.5,
-	reviewCount: 4,
 };
 
 export const navLinks = [
