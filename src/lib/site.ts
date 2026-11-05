@@ -10,7 +10,7 @@ export const site = {
 	city: 'Buenos Aires',
 	province: 'Ciudad Autónoma de Buenos Aires',
 	country: 'Argentina',
-	url: 'https://abogadospapus.com.ar',
+	url: 'https://tomymkiv.github.io/studious-couscous/',
 
 	// REEMPLAZAR: teléfono real del estudio.
 	phone: '123123312',
@@ -38,11 +38,11 @@ export const site = {
 };
 
 export const navLinks = [
-	{ label: 'Inicio', href: '/#inicio', section: 'inicio' },
-	{ label: 'Accidentes de tránsito', href: '/#accidentes', section: 'accidentes' },
-	{ label: 'Derecho de familia', href: '/#familia', section: 'familia' },
-	{ label: 'El bufete', href: '/#bufete', section: 'bufete' },
-	{ label: 'Preguntas frecuentes', href: '/#preguntas', section: 'preguntas' },
+	{ label: 'Inicio', href: '#inicio', section: 'inicio' },
+	{ label: 'Accidentes de tránsito', href: '#accidentes', section: 'accidentes' },
+	{ label: 'Derecho de familia', href: '#familia', section: 'familia' },
+	{ label: 'El bufete', href: '#bufete', section: 'bufete' },
+	{ label: 'Preguntas frecuentes', href: '#preguntas', section: 'preguntas' },
 ];
 
 export const practiceAreas = [

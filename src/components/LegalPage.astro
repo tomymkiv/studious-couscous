@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { homeUrl } from '../lib/paths';
 
 interface Props {
 	title: string;
@@ -14,7 +15,7 @@ const { title, description, updated } = Astro.props;
 	<article class="pt-24 pb-24">
 		<div class="mx-auto w-full max-w-3xl px-4 md:px-6">
 			<a
-				href="/"
+				href={homeUrl}
 				class="caption-1 inline-flex items-center gap-2 text-ink-soft transition duration-300 ease-base hover:text-accent"
 			>
 				← Volver al inicio

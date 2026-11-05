@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { homeUrl, withBase } from '../lib/paths';
 ---
 
 <Layout
@@ -17,8 +18,8 @@ import Layout from '../layouts/Layout.astro';
 			</p>
 
 			<div class="mt-8 flex flex-wrap items-center gap-4">
-				<a href="/" class="btn-primary">Volver al inicio</a>
-				<a href="/#consulta" class="btn-secondary">Solicitar consulta</a>
+				<a href={homeUrl} class="btn-primary">Volver al inicio</a>
+				<a href={withBase('/#consulta')} class="btn-secondary">Solicitar consulta</a>
 			</div>
 		</div>
 	</section>

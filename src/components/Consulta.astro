@@ -1,6 +1,7 @@
 ---
 import Icon from './Icon.astro';
 import { site } from '../lib/site';
+import { withBase } from '../lib/paths';
 ---
 
 <section id="consulta" class="py-24">
@@ -132,7 +133,7 @@ import { site } from '../lib/site';
 								<label for="consentimiento" class="caption-2 text-ink-soft">
 									Autorizo a {site.name} a usar estos datos para responder mi consulta. Ver{' '}
 									<a
-										href="/privacidad"
+										href={withBase('/privacidad')}
 										class="text-accent underline decoration-accent/40 underline-offset-2 transition duration-300 ease-base hover:text-accent-hover"
 									>
 										política de privacidad

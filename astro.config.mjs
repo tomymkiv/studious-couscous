@@ -4,9 +4,9 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-	// REEMPLAZAR: dominio definitivo del estudio.
+	// Despliegue en GitHub Pages: https://tomymkiv.github.io/studious-couscous
 	site: 'https://tomymkiv.github.io',
-	base: 'studious-couscous',
+	base: '/studious-couscous',
 	vite: {
 		plugins: [tailwindcss()],
 	},

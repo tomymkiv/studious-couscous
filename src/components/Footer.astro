@@ -2,6 +2,7 @@
 import Logo from './Logo.astro';
 import Icon from './Icon.astro';
 import { site } from '../lib/site';
+import { homeUrl, withBase } from '../lib/paths';
 
 const year = new Date().getFullYear();
 ---
@@ -11,7 +12,7 @@ const year = new Date().getFullYear();
 		<div class="grid gap-12 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
 			<div class="max-w-sm">
 				<a
-					href="/"
+					href={homeUrl}
 					class="flex items-center gap-2 rounded-lg transition duration-300 ease-base hover:text-accent"
 					aria-label={`${site.name}, ir al inicio`}
 				>
@@ -38,17 +39,17 @@ const year = new Date().getFullYear();
 				<h2 class="title-4 text-ink">Áreas de práctica</h2>
 				<ul class="mt-4 flex flex-col gap-3">
 					<li>
-						<a href="/#accidentes" class="caption-1 text-ink-soft transition duration-300 ease-base hover:text-accent">
+						<a href={withBase('/#accidentes')} class="caption-1 text-ink-soft transition duration-300 ease-base hover:text-accent">
 							Accidentes de tránsito
 						</a>
 					</li>
 					<li>
-						<a href="/#familia" class="caption-1 text-ink-soft transition duration-300 ease-base hover:text-accent">
+						<a href={withBase('/#familia')} class="caption-1 text-ink-soft transition duration-300 ease-base hover:text-accent">
 							Derecho de familia
 						</a>
 					</li>
 					<li>
-						<a href="/#preguntas" class="caption-1 text-ink-soft transition duration-300 ease-base hover:text-accent">
+						<a href={withBase('/#preguntas')} class="caption-1 text-ink-soft transition duration-300 ease-base hover:text-accent">
 							Preguntas frecuentes
 						</a>
 					</li>
@@ -59,12 +60,12 @@ const year = new Date().getFullYear();
 				<h2 class="title-4 text-ink">El bufete</h2>
 				<ul class="mt-4 flex flex-col gap-3">
 					<li>
-						<a href="/#bufete" class="caption-1 text-ink-soft transition duration-300 ease-base hover:text-accent">
+						<a href={withBase('/#bufete')} class="caption-1 text-ink-soft transition duration-300 ease-base hover:text-accent">
 							Quiénes somos
 						</a>
 					</li>
 					<li>
-						<a href="/#consulta" class="caption-1 text-ink-soft transition duration-300 ease-base hover:text-accent">
+						<a href={withBase('/#consulta')} class="caption-1 text-ink-soft transition duration-300 ease-base hover:text-accent">
 							Solicitar consulta
 						</a>
 					</li>
@@ -85,12 +86,12 @@ const year = new Date().getFullYear();
 				<h2 class="title-4 text-ink">Legal</h2>
 				<ul class="mt-4 flex flex-col gap-3">
 					<li>
-						<a href="/aviso-legal" class="caption-1 text-ink-soft transition duration-300 ease-base hover:text-accent">
+						<a href={withBase('/aviso-legal')} class="caption-1 text-ink-soft transition duration-300 ease-base hover:text-accent">
 							Aviso legal
 						</a>
 					</li>
 					<li>
-						<a href="/privacidad" class="caption-1 text-ink-soft transition duration-300 ease-base hover:text-accent">
+						<a href={withBase('/privacidad')} class="caption-1 text-ink-soft transition duration-300 ease-base hover:text-accent">
 							Política de privacidad
 						</a>
 					</li>
