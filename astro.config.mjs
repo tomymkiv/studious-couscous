@@ -5,7 +5,8 @@ import tailwindcss from '@tailwindcss/vite';
 // https://astro.build/config
 export default defineConfig({
 	// REEMPLAZAR: dominio definitivo del estudio.
-	site: 'https://abogadospapus.com.ar',
+	site: 'https://tomymkiv.github.io',
+	base: 'studious-couscous',
 	vite: {
 		plugins: [tailwindcss()],
 	},
