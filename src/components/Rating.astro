@@ -1,0 +1,20 @@
+---
+import Icon from './Icon.astro';
+
+interface Props {
+	rating: number;
+}
+
+const { rating } = Astro.props;
+---
+
+<span class="inline-flex items-center gap-1" role="img" aria-label={`${rating} de 5 estrellas`}>
+	{
+		[1, 2, 3, 4, 5].map((star) => (
+			<Icon
+				name={star <= rating ? 'star' : 'star-outline'}
+				class={star <= rating ? 'size-4 text-gold' : 'size-4 text-ink-soft/40'}
+			/>
+		))
+	}
+</span>

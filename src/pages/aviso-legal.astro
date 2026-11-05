@@ -1,0 +1,49 @@
+---
+import LegalPage from '../components/LegalPage.astro';
+import { site } from '../lib/site';
+---
+
+<LegalPage
+	title="Aviso legal"
+	description="Condiciones de uso del sitio de Abogados Papus, estudio jurídico en Buenos Aires."
+	updated="3 de noviembre de 2026"
+>
+	<h2 class="heading-5 text-ink">Titularidad del sitio</h2>
+	<p class="body-3 text-ink-soft">
+		Este sitio pertenece a {site.name}, estudio jurídico con domicilio en {site.address},
+		{site.addressCity}, {site.country}. Puede comunicarse por teléfono al {site.phoneDisplay} o por
+		correo a {site.email}.
+	</p>
+
+	<h2 class="heading-5 text-ink">Carácter de la información</h2>
+	<p class="body-3 text-ink-soft">
+		Los contenidos de este sitio son informativos y generales. No constituyen asesoramiento legal para
+		un caso concreto, no reemplazan una consulta profesional y no generan una relación abogado cliente
+		por sí solos.
+	</p>
+
+	<h2 class="heading-5 text-ink">Resultados</h2>
+	<p class="body-3 text-ink-soft">
+		Los resultados de casos anteriores no garantizan resultados similares. Cada situación depende de
+		sus circunstancias, de las pruebas disponibles y de las decisiones judiciales o administrativas que
+		correspondan.
+	</p>
+
+	<h2 class="heading-5 text-ink">Propiedad intelectual</h2>
+	<p class="body-3 text-ink-soft">
+		Los textos, marcas, logotipos y elementos gráficos de este sitio no pueden reproducirse sin
+		autorización previa del estudio, salvo para uso personal y no comercial.
+	</p>
+
+	<h2 class="heading-5 text-ink">Enlaces externos</h2>
+	<p class="body-3 text-ink-soft">
+		El sitio puede incluir enlaces a páginas de terceros. No controlamos su contenido ni respondemos por
+		sus políticas de privacidad.
+	</p>
+
+	<h2 class="heading-5 text-ink">Contacto y consultas</h2>
+	<p class="body-3 text-ink-soft">
+		Para iniciar una consulta, use el formulario del sitio, escriba a {site.email} o llame al
+		{site.phoneDisplay} dentro del horario de atención: {site.hours}.
+	</p>
+</LegalPage>

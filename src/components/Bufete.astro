@@ -1,0 +1,69 @@
+---
+import Icon from './Icon.astro';
+import { benefits, team } from '../lib/site';
+---
+
+<section id="bufete" class="border-y border-line bg-surface py-24">
+	<div class="mx-auto w-full max-w-6xl px-4 md:px-6">
+		<div class="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+			<div class="max-w-[680px]" data-reveal>
+				<p class="caption-1 text-ink-soft">El bufete</p>
+				<h2 class="heading-2 mt-4 text-balance">Un estudio chico, con atención directa.</h2>
+				<p class="body-3 mt-6 text-pretty text-ink-soft">
+					Abogados Papus trabaja en dos materias que exigen cercanía: los reclamos después de un
+					accidente y los conflictos de familia. No derivamos su caso a terceros ni lo tratamos como
+					un número de expediente.
+				</p>
+				<p class="body-3 mt-4 text-pretty text-ink-soft">
+					Cada reunión termina con una respuesta concreta: qué se puede hacer, qué no depende del
+					estudio y cuál es el próximo paso.
+				</p>
+
+				<div class="on-dark mt-8 rounded-2xl bg-accent p-6">
+					<p class="caption-3 text-accent-soft">Consulta con arancel</p>
+					<p class="body-3 mt-2 text-white/85">
+						La primera reunión tiene un costo que se informa antes de agendar. Así podemos dedicarle
+						el tiempo que su caso necesita.
+					</p>
+				</div>
+			</div>
+
+			<ul class="flex flex-col gap-6">
+				{
+					benefits.map((benefit) => (
+						<li class="flex items-start gap-4" data-reveal>
+							<span class="mt-1 inline-flex size-10 shrink-0 items-center justify-center rounded-lg bg-accent-soft text-accent">
+								<Icon name="check" class="size-5" />
+							</span>
+							<div>
+								<p class="title-3">{benefit.title}</p>
+								<p class="body-6 mt-1 text-ink-soft">{benefit.body}</p>
+							</div>
+						</li>
+					))
+				}
+			</ul>
+		</div>
+
+		<div class="mt-16">
+			<h3 class="heading-4" data-reveal>El equipo</h3>
+			<ul class="mt-8 grid gap-6 md:grid-cols-3">
+				{
+					team.map((person) => (
+						<li class="rounded-2xl bg-canvas p-6" data-reveal>
+							<span
+								class="title-2 inline-flex size-12 items-center justify-center rounded-full bg-accent-soft text-accent"
+								aria-hidden="true"
+							>
+								{person.initials}
+							</span>
+							<p class="title-3 mt-4">{person.name}</p>
+							<p class="caption-2 mt-1 text-ink-soft">{person.role}</p>
+							<p class="body-6 mt-3 text-ink-soft">{person.focus}</p>
+						</li>
+					))
+				}
+			</ul>
+		</div>
+	</div>
+</section>

@@ -1,0 +1,178 @@
+---
+import Icon from './Icon.astro';
+import { site } from '../lib/site';
+---
+
+<section id="consulta" class="py-24">
+	<div class="mx-auto w-full max-w-6xl px-4 md:px-6">
+		<div class="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+			<div class="max-w-[680px]" data-reveal>
+				<p class="caption-1 text-ink-soft">Consulta</p>
+				<h2 class="heading-2 mt-4 text-balance">Cuéntenos qué necesita resolver.</h2>
+				<p class="body-3 mt-6 text-pretty text-ink-soft">
+					Complete el formulario con un resumen de su situación. Revisamos el mensaje y le indicamos
+					si el estudio puede tomar el caso y cómo sería el siguiente paso.
+				</p>
+
+				<div class="mt-8 rounded-2xl border border-line bg-surface p-6">
+					<p class="title-3">La primera consulta tiene un arancel</p>
+					<p class="body-6 mt-2 text-pretty text-ink-soft">
+						El monto se informa antes de agendar y se descuenta si el caso avanza. No prometemos
+						resultados: explicamos qué se puede pedir y qué pruebas hacen falta.
+					</p>
+				</div>
+
+				<ul class="mt-8 flex flex-col gap-4">
+					<li class="flex items-start gap-3">
+						<Icon name="phone" class="mt-1 size-4 shrink-0 text-accent" />
+						<a
+							href={`tel:${site.phone}`}
+							class="body-5 text-ink transition duration-300 ease-base hover:text-accent"
+						>
+							{site.phoneDisplay}
+						</a>
+					</li>
+					<li class="flex items-start gap-3">
+						<Icon name="mail" class="mt-1 size-4 shrink-0 text-accent" />
+						<a
+							href={`mailto:${site.email}`}
+							class="body-5 text-ink transition duration-300 ease-base hover:text-accent"
+						>
+							{site.email}
+						</a>
+					</li>
+					<li class="flex items-start gap-3">
+						<Icon name="pin" class="mt-1 size-4 shrink-0 text-accent" />
+						<p class="body-5 text-ink-soft">{site.address}, {site.addressCity}</p>
+					</li>
+					<li class="flex items-start gap-3">
+						<Icon name="clock" class="mt-1 size-4 shrink-0 text-accent" />
+						<p class="body-5 text-ink-soft">{site.hours}</p>
+					</li>
+				</ul>
+			</div>
+
+			<div class="rounded-3xl border border-line bg-surface p-6 md:p-8" data-reveal>
+				<form data-mvp-form novalidate class="flex flex-col gap-6">
+					<div class="grid gap-6 sm:grid-cols-2">
+						<div>
+							<label for="nombre" class="body-5 text-ink">Nombre completo</label>
+							<input
+								id="nombre"
+								name="nombre"
+								type="text"
+								autocomplete="name"
+								placeholder="Nombre y apellido"
+								class="field mt-2"
+								aria-invalid="false"
+							/>
+							<p data-error-for="nombre" class="caption-2 mt-2 hidden text-danger" aria-live="polite"></p>
+						</div>
+
+						<div>
+							<label for="telefono" class="body-5 text-ink">Teléfono</label>
+							<input
+								id="telefono"
+								name="telefono"
+								type="tel"
+								autocomplete="tel"
+								placeholder="11 5555 5555"
+								class="field mt-2"
+								aria-invalid="false"
+							/>
+							<p data-error-for="telefono" class="caption-2 mt-2 hidden text-danger" aria-live="polite"></p>
+						</div>
+
+						<div class="sm:col-span-2">
+							<label for="correo" class="body-5 text-ink">Correo electrónico</label>
+							<input
+								id="correo"
+								name="correo"
+								type="email"
+								autocomplete="email"
+								placeholder="nombre@correo.com"
+								class="field mt-2"
+								aria-invalid="false"
+							/>
+							<p data-error-for="correo" class="caption-2 mt-2 hidden text-danger" aria-live="polite"></p>
+						</div>
+
+						<div class="sm:col-span-2">
+							<label for="tipo" class="body-5 text-ink">Tipo de caso</label>
+							<select id="tipo" name="tipo" class="field mt-2" aria-invalid="false">
+								<option value="">Elija una opción</option>
+								<option value="accidente">Accidente de tránsito</option>
+								<option value="familia">Derecho de familia</option>
+								<option value="otro">Otro</option>
+							</select>
+							<p data-error-for="tipo" class="caption-2 mt-2 hidden text-danger" aria-live="polite"></p>
+						</div>
+
+						<div class="sm:col-span-2">
+							<label for="mensaje" class="body-5 text-ink">Qué necesita resolver</label>
+							<textarea
+								id="mensaje"
+								name="mensaje"
+								rows="4"
+								placeholder="Un resumen breve de lo que pasó y qué necesita resolver."
+								class="field mt-2 resize-y"
+								aria-invalid="false"></textarea>
+							<p data-error-for="mensaje" class="caption-2 mt-2 hidden text-danger" aria-live="polite"></p>
+						</div>
+
+						<div class="sm:col-span-2">
+							<div class="flex items-start gap-3">
+								<input
+									id="consentimiento"
+									name="consentimiento"
+									type="checkbox"
+									class="mt-1 size-4 shrink-0 rounded-sm border border-line accent-accent"
+									aria-invalid="false"
+								/>
+								<label for="consentimiento" class="caption-2 text-ink-soft">
+									Autorizo a {site.name} a usar estos datos para responder mi consulta. Ver{' '}
+									<a
+										href="/privacidad"
+										class="text-accent underline decoration-accent/40 underline-offset-2 transition duration-300 ease-base hover:text-accent-hover"
+									>
+										política de privacidad
+									</a>.
+								</label>
+							</div>
+							<p data-error-for="consentimiento" class="caption-2 mt-2 hidden text-danger" aria-live="polite"></p>
+						</div>
+					</div>
+
+					<button type="submit" class="btn-primary w-full">
+						Enviar solicitud
+						<Icon name="arrow" class="size-4" />
+					</button>
+
+					<p class="caption-5 text-ink-soft">
+						Sus datos se usan solo para responder esta consulta. No compartimos la información con
+						terceros.
+					</p>
+
+					<div
+						data-form-notice
+						hidden
+						class="rounded-xl border border-accent/30 bg-accent-soft p-4"
+						role="status"
+					>
+						<p class="title-3">El formulario todavía no está conectado.</p>
+						<p class="caption-2 mt-2 text-ink-soft">
+							Para iniciar una consulta, escriba a{' '}
+							<a href={`mailto:${site.email}`} class="text-accent underline decoration-accent/40 underline-offset-2">
+								{site.email}
+							</a>{' '}
+							o llame al{' '}
+							<a href={`tel:${site.phone}`} class="text-accent underline decoration-accent/40 underline-offset-2">
+								{site.phoneDisplay}
+							</a>.
+						</p>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</section>

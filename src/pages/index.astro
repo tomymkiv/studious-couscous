@@ -1,0 +1,67 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import ProofStrip from '../components/ProofStrip.astro';
+import TaglineReveal from '../components/TaglineReveal.astro';
+import PracticeAreas from '../components/PracticeAreas.astro';
+import Process from '../components/Process.astro';
+import Bufete from '../components/Bufete.astro';
+import Reviews from '../components/Reviews.astro';
+import Faq from '../components/Faq.astro';
+import Consulta from '../components/Consulta.astro';
+import { faqs, site } from '../lib/site';
+
+const title = 'Abogados de accidentes de tránsito y familia en Buenos Aires | Abogados Papus';
+const description =
+	'Estudio jurídico en Buenos Aires. Accidentes de tránsito, divorcio, cuidado personal y cuota alimenticia. Atención directa del abogado que estudia su caso.';
+
+const legalServiceSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'LegalService',
+	name: site.name,
+	description: site.description,
+	url: site.url,
+	telephone: `+54 ${site.phone}`,
+	email: site.email,
+	address: {
+		'@type': 'PostalAddress',
+		streetAddress: site.address,
+		addressLocality: site.city,
+		addressRegion: site.province,
+		addressCountry: 'AR',
+	},
+	areaServed: {
+		'@type': 'City',
+		name: site.city,
+	},
+	openingHours: 'Mo-Fr 09:00-18:00',
+	knowsLanguage: 'es-AR',
+};
+
+const faqSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'FAQPage',
+	mainEntity: faqs.map((faq) => ({
+		'@type': 'Question',
+		name: faq.question,
+		acceptedAnswer: {
+			'@type': 'Answer',
+			text: faq.answer,
+		},
+	})),
+};
+---
+
+<Layout title={title} description={description}>
+	<Hero />
+	<ProofStrip />
+	<TaglineReveal />
+	<PracticeAreas />
+	<Process />
+	<Bufete />
+	<Reviews />
+	<Faq />
+	<Consulta />
+
+	<script type="application/ld+json" set:html={JSON.stringify([legalServiceSchema, faqSchema])} />
+</Layout>

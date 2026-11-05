@@ -1,0 +1,311 @@
+---
+import '../styles/global.css';
+import { ClientRouter } from 'astro:transitions';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { site } from '../lib/site';
+
+interface Props {
+	title?: string;
+	description?: string;
+	noindex?: boolean;
+}
+
+const {
+	title = `${site.name} | Accidentes de tránsito y derecho de familia en Buenos Aires`,
+	description = site.description,
+	noindex = false,
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site ?? site.url);
+const ogImage = new URL('/og.png', Astro.site ?? site.url);
+---
+
+<!doctype html>
+<html lang="es-AR">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		{noindex && <meta name="robots" content="noindex" />}
+		<link rel="canonical" href={canonical} />
+
+		<meta property="og:type" content="website" />
+		<meta property="og:locale" content="es_AR" />
+		<meta property="og:site_name" content={site.name} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={canonical} />
+		<meta property="og:image" content={ogImage} />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={ogImage} />
+		<meta name="theme-color" content="#f5f4f1" />
+
+		<ClientRouter />
+		<noscript>
+			<style>
+				[data-reveal] {
+					opacity: 1 !important;
+					transform: none !important;
+				}
+				.tagline-word {
+					color: var(--color-ink) !important;
+				}
+			</style>
+		</noscript>
+	</head>
+	<body class="min-h-screen bg-canvas text-ink">
+		<a href="#contenido" class="skip-link">Saltar al contenido</a>
+		<Header />
+		<main id="contenido">
+			<slot />
+		</main>
+		<Footer />
+
+		<script>
+			const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+			const desktopQuery = window.matchMedia('(min-width: 1024px)');
+
+			function initReveals() {
+				const items = Array.from(document.querySelectorAll('[data-reveal]:not(.is-visible)'));
+
+				if (reduceMotion.matches || !('IntersectionObserver' in window)) {
+					items.forEach((item) => item.classList.add('is-visible'));
+					return;
+				}
+
+				const observer = new IntersectionObserver(
+					(entries) => {
+						entries.forEach((entry) => {
+							if (!entry.isIntersecting) return;
+							entry.target.classList.add('is-visible');
+							observer.unobserve(entry.target);
+						});
+					},
+					{ rootMargin: '0px 0px -10% 0px', threshold: 0.05 },
+				);
+
+				items.forEach((item) => observer.observe(item));
+			}
+
+			function initTagline() {
+				const words = Array.from(document.querySelectorAll('[data-tagline-word]'));
+				if (!words.length) return;
+
+				if (reduceMotion.matches) {
+					words.forEach((word) => word.classList.add('is-lit'));
+					return;
+				}
+
+				const observer = new IntersectionObserver(
+					(entries) => {
+						entries.forEach((entry) => {
+							if (!entry.isIntersecting) return;
+							entry.target.classList.add('is-lit');
+							observer.unobserve(entry.target);
+						});
+					},
+					{ rootMargin: '-40% 0px -40% 0px', threshold: 0 },
+				);
+
+				words.forEach((word) => observer.observe(word));
+			}
+
+			function initScrollspy() {
+				const links = Array.from(document.querySelectorAll('[data-nav-section]'));
+				if (!links.length) return;
+
+				links.forEach((link) => link.removeAttribute('aria-current'));
+
+				if (window.location.pathname !== '/') return;
+
+				const targets = links
+					.map((link) => document.getElementById(link.dataset.navSection))
+					.filter((target) => target !== null);
+
+				if (!targets.length) return;
+
+				const observer = new IntersectionObserver(
+					(entries) => {
+						entries.forEach((entry) => {
+							if (!entry.isIntersecting) return;
+							links.forEach((link) => {
+								if (link.dataset.navSection !== entry.target.id) {
+									link.removeAttribute('aria-current');
+								}
+							});
+							const active = links.find(
+								(link) => link.dataset.navSection === entry.target.id,
+							);
+							active?.setAttribute('aria-current', 'location');
+						});
+					},
+					{ rootMargin: '-45% 0px -50% 0px' },
+				);
+
+				targets.forEach((target) => observer.observe(target));
+			}
+
+			function setMenu(open) {
+				const panel = document.querySelector('[data-menu-panel]');
+				const toggle = document.querySelector('[data-menu-toggle]');
+				if (!panel || !toggle) return;
+
+				panel.setAttribute('data-open', String(open));
+				toggle.setAttribute('data-open', String(open));
+				toggle.setAttribute('aria-expanded', String(open));
+				toggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+				document.documentElement.classList.toggle('overflow-hidden', open);
+			}
+
+			function initMenu() {
+				setMenu(false);
+			}
+
+			function clearError(form, name) {
+				const input = form.querySelector(`[name="${name}"]`);
+				const error = form.querySelector(`[data-error-for="${name}"]`);
+				if (input) input.setAttribute('aria-invalid', 'false');
+				if (error) {
+					error.textContent = '';
+					error.classList.add('hidden');
+				}
+			}
+
+			function setError(form, name, message) {
+				const input = form.querySelector(`[name="${name}"]`);
+				const error = form.querySelector(`[data-error-for="${name}"]`);
+				if (input) input.setAttribute('aria-invalid', message ? 'true' : 'false');
+				if (error) {
+					error.textContent = message;
+					error.classList.toggle('hidden', !message);
+				}
+			}
+
+			function validateForm(form) {
+				const data = new FormData(form);
+				const name = String(data.get('nombre') ?? '').trim();
+				const phone = String(data.get('telefono') ?? '').trim();
+				const email = String(data.get('correo') ?? '').trim();
+				const area = String(data.get('tipo') ?? '');
+				const message = String(data.get('mensaje') ?? '').trim();
+				const consent = data.get('consentimiento');
+
+				const errors = {};
+
+				if (name.length < 2) {
+					errors.nombre = 'Escriba su nombre completo.';
+				}
+				if (phone.replace(/\D/g, '').length < 6) {
+					errors.telefono = 'Escriba un teléfono al que podamos llamarlo.';
+				}
+				if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+					errors.correo = 'Revise el correo, parece incompleto.';
+				}
+				if (!area) {
+					errors.tipo = 'Elija el tipo de caso.';
+				}
+				if (message.length < 10) {
+					errors.mensaje = 'Cuéntenos brevemente qué necesita resolver.';
+				}
+				if (!consent) {
+					errors.consentimiento = 'Necesitamos su autorización para contactarlo.';
+				}
+
+				const names = ['nombre', 'telefono', 'correo', 'tipo', 'mensaje', 'consentimiento'];
+				names.forEach((field) => {
+					if (errors[field]) {
+						setError(form, field, errors[field]);
+					} else {
+						clearError(form, field);
+					}
+				});
+
+				const firstInvalid = names.find((field) => errors[field]);
+				if (firstInvalid) {
+					const input = form.querySelector(`[name="${firstInvalid}"]`);
+					if (input instanceof HTMLElement) input.focus();
+					return false;
+				}
+
+				return true;
+			}
+
+			function initPage() {
+				initMenu();
+				initReveals();
+				initTagline();
+				initScrollspy();
+			}
+
+			document.addEventListener('astro:page-load', initPage);
+
+			const root = window as Window & { __papusBound?: boolean };
+
+			if (!root.__papusBound) {
+				root.__papusBound = true;
+
+				document.addEventListener('click', (event) => {
+					const target = event.target;
+					if (!(target instanceof Element)) return;
+
+					if (target.closest('[data-menu-toggle]')) {
+						const panel = document.querySelector('[data-menu-panel]');
+						setMenu(panel?.getAttribute('data-open') !== 'true');
+						return;
+					}
+
+					if (target.closest('[data-menu-link]')) {
+						setMenu(false);
+					}
+				});
+
+				document.addEventListener('keydown', (event) => {
+					if (event.key === 'Escape') setMenu(false);
+				});
+
+				desktopQuery.addEventListener('change', (event) => {
+					if (event.matches) setMenu(false);
+				});
+
+				document.addEventListener('submit', (event) => {
+					const form = event.target;
+					if (!(form instanceof HTMLFormElement)) return;
+					if (!form.matches('[data-mvp-form]')) return;
+
+					event.preventDefault();
+					if (!validateForm(form)) return;
+
+					const notice = form.querySelector('[data-form-notice]');
+					if (notice instanceof HTMLElement) {
+						notice.hidden = false;
+						notice.setAttribute('tabindex', '-1');
+						notice.focus();
+					}
+				});
+
+				document.addEventListener('input', (event) => {
+					const target = event.target;
+					if (!(target instanceof HTMLElement)) return;
+
+					const form = target.closest('[data-mvp-form]');
+					if (!form || !target.getAttribute('name')) return;
+					clearError(form, target.getAttribute('name'));
+				});
+			}
+
+			if (document.readyState === 'loading') {
+				document.addEventListener('DOMContentLoaded', initPage, { once: true });
+			} else {
+				initPage();
+			}
+		</script>
+	</body>
+</html>

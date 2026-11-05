@@ -1,0 +1,20 @@
+---
+const text = 'Cada expediente se estudia como si fuera el único. Porque para usted lo es.';
+const words = text.split(' ');
+---
+
+<section aria-label="Nuestra forma de trabajar" class="py-24">
+	<div class="mx-auto w-full max-w-6xl px-4 md:px-6">
+		<p class="caption-1 text-ink-soft">Nuestra forma de trabajar</p>
+		<p class="heading-2 mt-6 max-w-[680px] text-balance">
+			{
+				words.map((word, index) => (
+					<span class="tagline-word" data-tagline-word style={`--word-delay: ${index * 30}`}>
+						{word}
+						{index < words.length - 1 ? ' ' : ''}
+					</span>
+				))
+			}
+		</p>
+	</div>
+</section>

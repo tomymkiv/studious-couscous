@@ -1,0 +1,111 @@
+---
+import Logo from './Logo.astro';
+import Icon from './Icon.astro';
+import { site } from '../lib/site';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-line bg-surface">
+	<div class="mx-auto w-full max-w-6xl px-4 py-16 md:px-6">
+		<div class="grid gap-12 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
+			<div class="max-w-sm">
+				<a
+					href="/"
+					class="flex items-center gap-2 rounded-lg transition duration-300 ease-base hover:text-accent"
+					aria-label={`${site.name}, ir al inicio`}
+				>
+					<Logo class="size-8 text-accent" />
+					<span class="title-3">{site.name}</span>
+				</a>
+				<p class="body-6 mt-4 text-ink-soft">{site.description}</p>
+
+				<ul class="mt-6 flex flex-col gap-3">
+					<li class="flex items-start gap-3">
+						<Icon name="pin" class="mt-1 size-4 shrink-0 text-accent" />
+						<span class="caption-1 text-ink-soft">
+							{site.address}<br />{site.addressCity}
+						</span>
+					</li>
+					<li class="flex items-start gap-3">
+						<Icon name="clock" class="mt-1 size-4 shrink-0 text-accent" />
+						<span class="caption-1 text-ink-soft">{site.hours}</span>
+					</li>
+				</ul>
+			</div>
+
+			<div>
+				<h2 class="title-4 text-ink">Áreas de práctica</h2>
+				<ul class="mt-4 flex flex-col gap-3">
+					<li>
+						<a href="/#accidentes" class="caption-1 text-ink-soft transition duration-300 ease-base hover:text-accent">
+							Accidentes de tránsito
+						</a>
+					</li>
+					<li>
+						<a href="/#familia" class="caption-1 text-ink-soft transition duration-300 ease-base hover:text-accent">
+							Derecho de familia
+						</a>
+					</li>
+					<li>
+						<a href="/#preguntas" class="caption-1 text-ink-soft transition duration-300 ease-base hover:text-accent">
+							Preguntas frecuentes
+						</a>
+					</li>
+				</ul>
+			</div>
+
+			<div>
+				<h2 class="title-4 text-ink">El bufete</h2>
+				<ul class="mt-4 flex flex-col gap-3">
+					<li>
+						<a href="/#bufete" class="caption-1 text-ink-soft transition duration-300 ease-base hover:text-accent">
+							Quiénes somos
+						</a>
+					</li>
+					<li>
+						<a href="/#consulta" class="caption-1 text-ink-soft transition duration-300 ease-base hover:text-accent">
+							Solicitar consulta
+						</a>
+					</li>
+					<li>
+						<a href={`tel:${site.phone}`} class="caption-1 text-ink-soft transition duration-300 ease-base hover:text-accent">
+							{site.phoneDisplay}
+						</a>
+					</li>
+					<li>
+						<a href={`mailto:${site.email}`} class="caption-1 text-ink-soft transition duration-300 ease-base hover:text-accent">
+							{site.email}
+						</a>
+					</li>
+				</ul>
+			</div>
+
+			<div>
+				<h2 class="title-4 text-ink">Legal</h2>
+				<ul class="mt-4 flex flex-col gap-3">
+					<li>
+						<a href="/aviso-legal" class="caption-1 text-ink-soft transition duration-300 ease-base hover:text-accent">
+							Aviso legal
+						</a>
+					</li>
+					<li>
+						<a href="/privacidad" class="caption-1 text-ink-soft transition duration-300 ease-base hover:text-accent">
+							Política de privacidad
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="mt-12 flex flex-col gap-4 border-t border-line pt-6">
+			<p class="caption-2 text-ink-soft">
+				Los contenidos de este sitio son informativos y no constituyen asesoramiento legal para un
+				caso concreto. Los resultados de casos anteriores no garantizan resultados similares.
+			</p>
+			<p class="caption-5 text-ink-soft">
+				© {year} {site.name}. Todos los derechos reservados.
+			</p>
+		</div>
+	</div>
+</footer>

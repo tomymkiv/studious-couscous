@@ -1,0 +1,110 @@
+---
+import Icon from './Icon.astro';
+import { site } from '../lib/site';
+
+const reviewPoints = [
+	{
+		icon: 'clock' as const,
+		title: 'Plazos',
+		body: 'Revisamos cuánto tiempo tiene para reclamar antes de que el caso se complique.',
+	},
+	{
+		icon: 'document' as const,
+		title: 'Pruebas',
+		body: 'Ordenamos la denuncia, las fotos y la historia médica desde la primera reunión.',
+	},
+	{
+		icon: 'shield' as const,
+		title: 'Honorarios',
+		body: 'Le entregamos un presupuesto por escrito antes de avanzar con cualquier paso.',
+	},
+];
+---
+
+<section id="inicio" class="pt-24 pb-16 md:pb-24">
+	<div
+		class="mx-auto grid w-full max-w-6xl gap-12 px-4 md:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-center"
+	>
+		<div>
+			<p class="caption-1 flex flex-wrap items-center gap-2 text-ink-soft">
+				<span class="inline-block size-2 rounded-full bg-accent" aria-hidden="true"></span>
+				Accidentes de tránsito y derecho de familia · {site.city}
+			</p>
+
+			<h1 class="hero-heading heading-1 mt-4 max-w-[680px] text-balance">
+				Un abogado que responde, cuando más lo necesita.
+			</h1>
+
+			<p class="body-3 mt-6 max-w-[680px] text-pretty text-ink-soft">
+				En {site.name} estudiamos su caso, le explicamos sus opciones y le decimos qué esperar en
+				cada etapa. Atendemos accidentes de tránsito, divorcio, cuidado personal y cuota alimenticia
+				en {site.city}.
+			</p>
+
+			<div class="mt-8 flex flex-wrap items-center gap-4">
+				<a href="#consulta" class="btn-primary">
+					Solicitar consulta
+					<Icon name="arrow" class="size-4" />
+				</a>
+				<a
+					href="#accidentes"
+					class="inline-flex items-center gap-2 rounded-lg px-1 py-2 text-base font-semibold text-ink transition duration-300 ease-base hover:text-accent"
+				>
+					Ver áreas de práctica
+				</a>
+			</div>
+
+			<ul class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2">
+				<li class="caption-2 flex items-center gap-2 text-ink-soft">
+					<span class="inline-block size-2 rounded-full bg-accent" aria-hidden="true"></span>
+					{site.years} años de ejercicio
+				</li>
+				<li class="caption-2 flex items-center gap-2 text-ink-soft">
+					<span class="inline-block size-2 rounded-full bg-accent" aria-hidden="true"></span>
+					{site.cases} casos atendidos
+				</li>
+				<li class="caption-2 flex items-center gap-2 text-ink-soft">
+					<span class="inline-block size-2 rounded-full bg-accent" aria-hidden="true"></span>
+					Atención presencial y remota
+				</li>
+			</ul>
+		</div>
+
+		<div class="rounded-3xl border border-line bg-surface p-6 md:p-8">
+			<div class="flex items-start gap-3">
+				<span
+					class="inline-flex size-10 shrink-0 items-center justify-center rounded-lg bg-accent-soft text-accent"
+				>
+					<Icon name="document" class="size-5" />
+				</span>
+				<div>
+					<p class="title-3">Su caso, en orden desde el primer día</p>
+					<p class="caption-2 mt-1 text-ink-soft">Tres puntos que revisamos antes de avanzar</p>
+				</div>
+			</div>
+
+			<ul class="mt-8 flex flex-col gap-6">
+				{
+					reviewPoints.map((point) => (
+						<li class="flex items-start gap-3">
+							<span class="mt-1 inline-flex size-8 shrink-0 items-center justify-center rounded-lg bg-canvas text-accent">
+								<Icon name={point.icon} class="size-4" />
+							</span>
+							<div>
+								<p class="title-3">{point.title}</p>
+								<p class="caption-2 mt-1 text-ink-soft">{point.body}</p>
+							</div>
+						</li>
+					))
+				}
+			</ul>
+
+			<div class="on-dark mt-8 rounded-2xl bg-accent p-6">
+				<p class="caption-3 text-accent-soft">Atención directa</p>
+				<p class="body-3 mt-2 text-white/85">
+					Lo atiende el abogado que estudia el expediente, no un sector de atención al cliente.
+				</p>
+			</div>
+		</div>
+	</div>
+</section>

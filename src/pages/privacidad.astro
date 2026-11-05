@@ -1,0 +1,61 @@
+---
+import LegalPage from '../components/LegalPage.astro';
+import { site } from '../lib/site';
+---
+
+<LegalPage
+	title="Política de privacidad"
+	description="Cómo trata Abogados Papus los datos personales que recibe a través de este sitio."
+	updated="3 de noviembre de 2026"
+>
+	<h2 class="heading-5 text-ink">Responsable del tratamiento</h2>
+	<p class="body-3 text-ink-soft">
+		{site.name}, con domicilio en {site.address}, {site.addressCity}, {site.country}, es responsable de
+		los datos personales que se reciben a través de este sitio. Contacto: {site.email}.
+	</p>
+
+	<h2 class="heading-5 text-ink">Qué datos recopilamos</h2>
+	<p class="body-3 text-ink-soft">
+		A través del formulario de consulta podemos recibir su nombre, teléfono, correo electrónico, el tipo
+		de caso y el resumen que usted decida escribir. No solicitamos datos sensibles en este formulario.
+	</p>
+
+	<h2 class="heading-5 text-ink">Para qué los usamos</h2>
+	<p class="body-3 text-ink-soft">
+		Usamos los datos únicamente para responder su consulta, evaluar si el estudio puede tomar el caso y
+		coordinar una reunión. No los usamos para enviarle publicidad ni los compartimos con terceros con
+		fines comerciales.
+	</p>
+
+	<h2 class="heading-5 text-ink">Base del tratamiento</h2>
+	<p class="body-3 text-ink-soft">
+		El tratamiento se basa en el consentimiento que usted presta al enviar el formulario y en el interés
+		profesional de responder a su solicitud. Puede retirar ese consentimiento en cualquier momento
+		escribiendo a {site.email}.
+	</p>
+
+	<h2 class="heading-5 text-ink">Conservación</h2>
+	<p class="body-3 text-ink-soft">
+		Conservamos los datos durante el tiempo necesario para responder la consulta. Si se inicia una
+		relación profesional, se aplican los plazos de conservación que exige la normativa aplicable.
+	</p>
+
+	<h2 class="heading-5 text-ink">Sus derechos</h2>
+	<p class="body-3 text-ink-soft">
+		Puede solicitar acceso, rectificación, actualización o supresión de sus datos escribiendo a
+		{site.email}. Le respondemos dentro de los plazos previstos por la Ley 25.326 de Protección de los
+		Datos Personales.
+	</p>
+
+	<h2 class="heading-5 text-ink">Cookies y servicios de terceros</h2>
+	<p class="body-3 text-ink-soft">
+		Este sitio no utiliza cookies de seguimiento ni servicios de publicidad de terceros. Las tipografías
+		se sirven desde el propio dominio.
+	</p>
+
+	<h2 class="heading-5 text-ink">Cambios en esta política</h2>
+	<p class="body-3 text-ink-soft">
+		Si modificamos esta política, publicaremos la versión actualizada en esta página con su fecha de
+		actualización.
+	</p>
+</LegalPage>

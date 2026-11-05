@@ -1,0 +1,25 @@
+---
+import { site } from '../lib/site';
+
+const stats = [
+	{ value: String(site.years), label: 'Años de ejercicio' },
+	{ value: String(site.cases), label: 'Casos atendidos' },
+	{ value: '2', label: 'Áreas de práctica' },
+	{ value: site.city, label: 'Atención presencial y remota' },
+];
+---
+
+<section aria-label="El estudio en números" class="border-y border-line bg-surface">
+	<div class="mx-auto w-full max-w-6xl px-4 py-12 md:px-6">
+		<dl class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+			{
+				stats.map((stat) => (
+					<div>
+						<dt class="caption-2 text-ink-soft">{stat.label}</dt>
+						<dd class="heading-4 mt-1 text-ink">{stat.value}</dd>
+					</div>
+				))
+			}
+		</dl>
+	</div>
+</section>

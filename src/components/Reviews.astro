@@ -1,0 +1,54 @@
+---
+import Rating from './Rating.astro';
+import { site, testimonials } from '../lib/site';
+---
+
+<section aria-labelledby="resenas-titulo" class="py-24">
+	<div class="mx-auto w-full max-w-6xl px-4 md:px-6">
+		<div class="flex flex-col gap-6 md:flex-row md:items-end md:justify-between" data-reveal>
+			<div class="max-w-[680px]">
+				<p class="caption-1 text-ink-soft">Valoraciones de clientes</p>
+				<h2 id="resenas-titulo" class="heading-2 mt-4 text-balance">
+					Lo que cuentan quienes ya pasaron por el estudio.
+				</h2>
+			</div>
+			<div class="flex flex-col gap-1">
+				<p class="heading-4 text-ink">
+					{site.rating.toLocaleString('es-AR', { minimumFractionDigits: 1 })} de 5
+				</p>
+				<p class="caption-2 text-ink-soft">Según {site.reviewCount} valoraciones de clientes.</p>
+			</div>
+		</div>
+
+		<ul class="mt-12 grid gap-6 md:grid-cols-2">
+			<iframe src="https://widgets.sociablekit.com/google-reviews/iframe/25725868" frameborder="0" width="100%" height="1000px"></iframe>
+			<!-- {
+				testimonials.map((testimonial) => (
+					<li class="card flex flex-col" data-reveal>
+						<Rating rating={testimonial.rating} />
+						<blockquote class="mt-4 flex-1">
+							<p class="body-3 text-pretty text-ink">“{testimonial.quote}”</p>
+						</blockquote>
+						<div class="mt-6 flex items-center gap-3">
+							<span
+								class="caption-3 inline-flex size-10 items-center justify-center rounded-full bg-accent-soft text-accent"
+								aria-hidden="true"
+							>
+								{testimonial.initials}
+							</span>
+							<div>
+								<p class="title-3">{testimonial.name}</p>
+								<p class="caption-2 text-ink-soft">{testimonial.area}</p>
+							</div>
+						</div>
+					</li>
+				))
+			} -->
+		</ul>
+
+		<p class="caption-5 mt-8 text-ink-soft">
+			Valoraciones de clientes del estudio. Los resultados de cada caso dependen de sus circunstancias
+			particulares.
+		</p>
+	</div>
+</section>

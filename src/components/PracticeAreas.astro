@@ -1,0 +1,59 @@
+---
+import Icon from './Icon.astro';
+import { practiceAreas } from '../lib/site';
+---
+
+{
+	practiceAreas.map((area, index) => {
+		const alternate = index % 2 === 1;
+		return (
+			<section
+				id={area.id}
+				class={alternate ? 'border-y border-line bg-surface py-24' : 'pb-24'}
+			>
+				<div class="mx-auto w-full max-w-6xl px-4 md:px-6">
+					<div class="grid gap-12 lg:grid-cols-2 lg:items-start">
+						<div class={alternate ? 'lg:order-2' : undefined} data-reveal>
+							<p class="caption-1 text-ink-soft">{area.eyebrow}</p>
+							<h2 class="heading-2 mt-4 max-w-[680px] text-balance">{area.title}</h2>
+							<p class="body-3 mt-6 max-w-[680px] text-pretty text-ink-soft">{area.lead}</p>
+
+							<ul class="mt-8 flex flex-col gap-4">
+								{area.items.map((item) => (
+									<li class="flex items-start gap-3">
+										<span class="mt-1 inline-flex size-5 shrink-0 items-center justify-center rounded-full bg-accent-soft text-accent">
+											<Icon name="check" class="size-3" />
+										</span>
+										<span class="body-3 text-ink">{item}</span>
+									</li>
+								))}
+							</ul>
+
+							<a
+								href="#consulta"
+								class="mt-8 inline-flex items-center gap-2 rounded-lg px-1 py-2 text-base font-semibold text-accent transition duration-300 ease-base hover:text-accent-hover"
+							>
+								{area.ctaLabel}
+								<Icon name="arrow" class="size-4" />
+							</a>
+						</div>
+
+						<div class={`card ${alternate ? 'lg:order-1' : ''}`} data-reveal>
+							<p class="heading-6">{area.panelTitle}</p>
+							<ol class="mt-6 flex flex-col gap-6">
+								{area.panelItems.map((item, itemIndex) => (
+									<li class="flex items-start gap-4">
+										<span class="caption-3 inline-flex size-8 shrink-0 items-center justify-center rounded-lg bg-canvas text-accent">
+											{String(itemIndex + 1).padStart(2, '0')}
+										</span>
+										<span class="body-3 pt-1 text-ink-soft">{item}</span>
+									</li>
+								))}
+							</ol>
+						</div>
+					</div>
+				</div>
+			</section>
+		);
+	})
+}
